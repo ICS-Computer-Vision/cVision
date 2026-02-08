@@ -51,6 +51,7 @@ python3 fix_resolution.py
 | 5 | `test_on_video_wide.py` | Short preview (about 5 s) of the wide canvas; no file written. |
 | 6 | `create_side_by_side.py` | Export split-screen video (raw + map) as `sprint1_demo_reel.mp4`. |
 | 7 | `pipeline_sprint1_formation.py` | Process full video and export frame images to `sprint1_frames/` (no video file). |
+| 8 | `restoration_engine_sprint2.py` | Restore top-down frames (stabilize, denoise, normalize lighting) to `sprint2_restored_frames/`. |
 
 Steps 4–7 require `road_test.mp4` in this folder.
 
@@ -72,8 +73,31 @@ Steps 4–7 require `road_test.mp4` in this folder.
 - **Verification images** — `verification_1_corners_found.jpg`, `verification_2_undistorted.jpg`, `verification_3_birdseye.jpg` (and optionally `debug_corners_full_image.jpg`) for sanity checks.
 - **`sprint1_demo_reel.mp4`** — Side-by-side video (Step 6). Output size is scaled (default half resolution) to keep the file smaller.
 - **`sprint1_frames/`** — Folder of JPEG frames from the final pipeline (Step 7). Each image is a full square bird's-eye view (e.g. 2000x2000). Frames are exported every Nth video frame (configurable in the script).
+- **`sprint2_restored_frames/`** — Restored JPEG frames from Sprint 2 (Step 8), stabilized and light-normalized.
 
 Generated videos and `sprint1_frames/` are listed in `.gitignore` so they are not committed.
+
+---
+
+## Sprint 2: Restoration Engine
+
+The restoration engine consumes the top-down frames from Sprint 1 and outputs cleaner, stabilized road textures.
+
+Run from this folder:
+
+```bash
+python3 restoration_engine_sprint2.py
+```
+
+Key toggles are at the top of the script:
+
+- `ENABLE_STABILIZATION`
+- `ENABLE_DENOISE`
+- `ENABLE_ILLUMINATION_NORM`
+- `ENABLE_SHADOW_FLATTEN`
+- `ENABLE_SHARPEN`
+
+If you want a preview video, set `EXPORT_VIDEO = True`.
 
 ---
 
