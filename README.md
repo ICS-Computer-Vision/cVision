@@ -1,4 +1,5 @@
-# Sprint 1: Geometry of Formation
+# PROSIT 1
+## Sprint 1: Geometry of Formation
 
 Computer vision pipeline that builds a metric top-down (bird's-eye) view from dashboard video. It uses camera calibration and homography to undistort frames and warp them to a world-aligned map with a known scale.
 
